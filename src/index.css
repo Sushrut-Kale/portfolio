@@ -1,0 +1,289 @@
+:root {
+  --bg-ivory: #F4ECE4;
+  --bg-dark: #070505;
+  --text-dark: #070505;
+  --text-ivory: #F4ECE4;
+  --text-muted: #6B6256;
+  --text-muted-dark: #A89F93;
+  --taupe: #938676;
+  --taupe-light: rgba(147, 134, 118, 0.22);
+  --dusty-blue: #597382;
+  --terracotta: #AC4033;
+  --terracotta-glow: rgba(172, 64, 51, 0.18);
+  --line-light: rgba(7, 5, 5, 0.12);
+  --line-dark: rgba(244, 236, 228, 0.14);
+  
+  --font-display: 'Big Shoulders Display', 'Syne', sans-serif;
+  --font-heading: 'Syne', sans-serif;
+  --font-ui: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-sharp: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-ivory);
+  color: var(--text-dark);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-ivory);
+  color: var(--text-dark);
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--terracotta);
+  color: var(--text-ivory);
+}
+
+/* Editorial Typography */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 800;
+  line-height: 0.88;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.font-ui {
+  font-family: var(--font-ui);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Tiny Tracked Label - Hallmark of Modnia */
+.editorial-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+/* Architectural Lines */
+.border-grid-light {
+  border-color: var(--line-light);
+}
+
+.border-grid-dark {
+  border-color: var(--line-dark);
+}
+
+/* Editorial Buttons */
+.btn-editorial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-editorial);
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.btn-primary-dark {
+  background-color: var(--bg-dark);
+  color: var(--text-ivory);
+  border: 1px solid var(--bg-dark);
+}
+
+.btn-primary-dark:hover {
+  background-color: var(--terracotta);
+  border-color: var(--terracotta);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-outline-dark {
+  background-color: transparent;
+  color: var(--text-dark);
+  border: 1px solid var(--text-dark);
+}
+
+.btn-outline-dark:hover {
+  background-color: var(--text-dark);
+  color: var(--text-ivory);
+  transform: translateY(-2px);
+}
+
+.btn-outline-ivory {
+  background-color: transparent;
+  color: var(--text-ivory);
+  border: 1px solid var(--text-ivory);
+}
+
+.btn-outline-ivory:hover {
+  background-color: var(--text-ivory);
+  color: var(--bg-dark);
+  transform: translateY(-2px);
+}
+
+.btn-terracotta {
+  background-color: var(--terracotta);
+  color: #fff;
+  border: 1px solid var(--terracotta);
+}
+
+.btn-terracotta:hover {
+  background-color: #8f3227;
+  border-color: #8f3227;
+  transform: translateY(-2px);
+}
+
+/* Hover link underline animation */
+.editorial-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.25s ease;
+}
+
+.editorial-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.35s var(--ease-editorial);
+}
+
+.editorial-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Architectural Grid Containers */
+.site-container {
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4vw, 4rem);
+  padding-right: clamp(1.25rem, 4vw, 4rem);
+}
+
+/* Marquee / Ticker */
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Image reveal / masking */
+.clip-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.clip-reveal img {
+  transition: transform 0.8s var(--ease-editorial);
+  will-change: transform;
+}
+
+.clip-reveal:hover img {
+  transform: scale(1.04);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--taupe);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--terracotta);
+}
+
+/* Modal Backdrop */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(7, 5, 5, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* Glassmorphism subtle dark */
+.glass-panel-dark {
+  background: rgba(14, 11, 11, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(244, 236, 228, 0.12);
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    animation: none;
+  }
+}
