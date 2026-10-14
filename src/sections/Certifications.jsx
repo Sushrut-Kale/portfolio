@@ -156,7 +156,7 @@ export default function Certifications({ onOpenMedia }) {
             <div
               key={cer.id}
               className="certificate-panel-uniform"
-              data-cursor-label="OPEN"
+              data-cursor-label="INSPECT"
               style={{
                 backgroundColor: 'rgba(244, 236, 228, 0.02)',
                 border: '1px solid rgba(244, 236, 228, 0.1)',

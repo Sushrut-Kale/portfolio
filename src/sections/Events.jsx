@@ -157,7 +157,7 @@ export default function Events({ onOpenMedia }) {
             <div
               key={item.id}
               className="event-panel-uniform"
-              data-cursor-label="VIEW"
+              data-cursor-label="INSPECT"
               style={{
                 backgroundColor: 'rgba(244, 236, 228, 0.02)',
                 border: '1px solid rgba(244, 236, 228, 0.12)',
