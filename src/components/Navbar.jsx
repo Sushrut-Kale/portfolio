@@ -67,6 +67,27 @@ export default function Navbar({ activeSection: controlledActiveSection, onSelec
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [navLinks, onSelectSection]);
 
+  // Escape key and body scroll lock for mobile menu
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleEscape);
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [mobileMenuOpen]);
+
   const handleNavClick = (e, sectionId) => {
     e.preventDefault();
     setMobileMenuOpen(false);
@@ -236,6 +257,8 @@ export default function Navbar({ activeSection: controlledActiveSection, onSelec
               padding: '0.5rem',
               color: 'var(--text-dark)',
               cursor: 'pointer',
+              minWidth: '44px',
+              minHeight: '44px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'

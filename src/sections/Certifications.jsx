@@ -148,7 +148,7 @@ export default function Certifications({ onOpenMedia }) {
           className="certificates-standard-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(290px, 100%), 1fr))',
             gap: '1.5rem'
           }}
         >
@@ -321,6 +321,11 @@ export default function Certifications({ onOpenMedia }) {
           border-color: var(--terracotta) !important;
           background-color: rgba(244, 236, 228, 0.04) !important;
           transform: translateY(-2px);
+        }
+        @media (max-width: 680px) {
+          .certificates-standard-grid {
+            grid-template-columns: 1fr !important;
+          }
         }
       `}</style>
     </section>

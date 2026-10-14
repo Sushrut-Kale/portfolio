@@ -52,13 +52,14 @@ export default function ProjectCaseModal({ project, isOpen, onClose, onSelectPro
         {/* Header */}
         <div
           style={{
-            padding: '1.25rem 2rem',
+            padding: 'clamp(0.75rem, 2.5vw, 1.25rem) clamp(1rem, 3vw, 2rem)',
             borderBottom: '1px solid rgba(244, 236, 228, 0.12)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             backgroundColor: '#070505',
-            gap: '1rem'
+            gap: '0.75rem',
+            flexWrap: 'wrap'
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -154,7 +155,7 @@ export default function ProjectCaseModal({ project, isOpen, onClose, onSelectPro
           style={{
             flex: 1,
             overflowY: 'auto',
-            padding: '2rem',
+            padding: 'clamp(1rem, 3.5vw, 2rem)',
             color: 'var(--text-ivory)'
           }}
         >

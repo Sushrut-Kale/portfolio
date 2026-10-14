@@ -45,12 +45,13 @@ export default function ResumeModal({ isOpen, onClose }) {
         {/* Header */}
         <div
           style={{
-            padding: '1.25rem 2rem',
+            padding: 'clamp(0.85rem, 2.5vw, 1.25rem) clamp(1rem, 3vw, 2rem)',
             borderBottom: '1px solid rgba(244, 236, 228, 0.12)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            backgroundColor: '#070505'
+            backgroundColor: '#070505',
+            gap: '1rem'
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -59,11 +60,11 @@ export default function ResumeModal({ isOpen, onClose }) {
               <h2
                 id="resume-title"
                 className="font-ui"
-                style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-ivory)' }}
+                style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', fontWeight: 600, color: 'var(--text-ivory)' }}
               >
                 Curriculum Vitae Preview
               </h2>
-              <div className="editorial-label" style={{ color: 'var(--taupe)' }}>
+              <div className="editorial-label" style={{ color: 'var(--taupe)', fontSize: '0.5625rem' }}>
                 OFFICIAL VERIFIED PROFILE SUMMARY
               </div>
             </div>
@@ -74,6 +75,11 @@ export default function ResumeModal({ isOpen, onClose }) {
             className="btn-editorial btn-primary-dark"
             style={{
               padding: '0.5rem',
+              minWidth: '40px',
+              minHeight: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
               border: '1px solid rgba(244, 236, 228, 0.25)',
               color: 'var(--text-ivory)'
             }}
@@ -88,20 +94,20 @@ export default function ResumeModal({ isOpen, onClose }) {
           style={{
             flex: 1,
             overflowY: 'auto',
-            padding: '2.5rem',
+            padding: 'clamp(1.25rem, 3.5vw, 2.5rem)',
             backgroundColor: '#0E0C0C',
             color: 'var(--text-ivory)'
           }}
         >
           {/* Document Header */}
-          <div style={{ borderBottom: '2px solid rgba(244, 236, 228, 0.2)', paddingBottom: '1.5rem', marginBottom: '2rem' }}>
+          <div style={{ borderBottom: '2px solid rgba(244, 236, 228, 0.2)', paddingBottom: '1.25rem', marginBottom: '1.75rem' }}>
             <h1
               className="font-display"
               style={{
-                fontSize: '2.8rem',
+                fontSize: 'clamp(1.75rem, 5vw, 2.8rem)',
                 color: 'var(--text-ivory)',
                 letterSpacing: '0.02em',
-                lineHeight: 0.9,
+                lineHeight: 0.95,
                 marginBottom: '0.5rem'
               }}
             >

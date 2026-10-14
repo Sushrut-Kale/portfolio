@@ -51,7 +51,7 @@ export default function MediaModal({ isOpen, onClose, fileUrl, title, subtitle, 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '1.25rem 1.75rem',
+            padding: 'clamp(0.75rem, 2.5vw, 1.25rem) clamp(0.75rem, 3vw, 1.75rem)',
             borderBottom: '1px solid rgba(244, 236, 228, 0.12)',
             backgroundColor: 'rgba(7, 5, 5, 0.95)'
           }}

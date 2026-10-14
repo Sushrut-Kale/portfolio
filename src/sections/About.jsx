@@ -1,6 +1,200 @@
-import React from 'react';
-import { ArrowDown, ArrowUpRight, Github, Linkedin, Instagram, Mail, FileCode2, GraduationCap } from 'lucide-react';
-import { PERSONAL_INFO } from '../data/portfolioData';
+import React, { useState, useEffect } from 'react';
+import { ArrowDown, ArrowUpRight, Github, Linkedin, Instagram, Mail, FileCode2, GraduationCap, Sparkles, FolderGit2, Cpu, Trophy, Award } from 'lucide-react';
+import { PERSONAL_INFO, PROJECTS, SKILL_CATEGORIES, EVENTS_DATA, CERTIFICATES } from '../data/portfolioData';
+import { useReducedMotion } from '../hooks/useReducedMotion';
+
+// Dynamic statistics calculated directly from verified source datasets
+const uniqueSkillsCount = new Set(
+  SKILL_CATEGORIES.flatMap((c) => c.skills.map((s) => s.name.trim().toLowerCase()))
+).size;
+
+const STATS_CONFIG = [
+  {
+    code: '01',
+    label: 'PROJECT ARCHIVE',
+    value: PROJECTS.length,
+    suffix: '',
+    subtext: 'Engineered Systems',
+    targetSection: 'projects',
+    accent: 'var(--terracotta)',
+    icon: FolderGit2
+  },
+  {
+    code: '02',
+    label: 'TECHNICAL SKILLS',
+    value: uniqueSkillsCount,
+    suffix: '',
+    subtext: '7 Core Domains',
+    targetSection: 'skills',
+    accent: 'var(--dusty-blue)',
+    icon: Cpu
+  },
+  {
+    code: '03',
+    label: 'DOCUMENTED EVENTS',
+    value: EVENTS_DATA.length,
+    suffix: '',
+    subtext: 'Hackathons & Forums',
+    targetSection: 'events',
+    accent: '#D47355',
+    icon: Trophy
+  },
+  {
+    code: '04',
+    label: 'VERIFIED CREDENTIALS',
+    value: CERTIFICATES.length,
+    suffix: '',
+    subtext: 'Industry Certifications',
+    targetSection: 'certifications',
+    accent: 'var(--taupe)',
+    icon: Award
+  }
+];
+
+function StatCard({ stat, onNavigateToSection, delay = 0 }) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const [revealed, setRevealed] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setDisplayValue(stat.value);
+      setRevealed(true);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setRevealed(true);
+      const startTime = performance.now();
+      const duration = 850;
+
+      const step = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Cubic ease out curve
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(easeOut * stat.value);
+        setDisplayValue(current);
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          setDisplayValue(stat.value);
+        }
+      };
+
+      requestAnimationFrame(step);
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [stat.value, delay, prefersReducedMotion]);
+
+  const IconComponent = stat.icon;
+
+  const handleClick = () => {
+    if (onNavigateToSection && stat.targetSection) {
+      onNavigateToSection(stat.targetSection);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      className="about-stat-card"
+      data-cursor-label="EXPLORE"
+      style={{
+        backgroundColor: 'var(--bg-dark)',
+        color: 'var(--text-ivory)',
+        border: '1px solid rgba(244, 236, 228, 0.12)',
+        padding: '0.875rem 1rem',
+        cursor: 'pointer',
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        minHeight: '128px',
+        opacity: revealed ? 1 : 0,
+        transform: revealed ? 'translateY(0)' : 'translateY(12px)',
+        transition: 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, background-color 0.25s ease',
+        outline: 'none'
+      }}
+    >
+      {/* Top Meta Bar */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+          <span className="font-mono" style={{ fontSize: '0.625rem', color: stat.accent, fontWeight: 700 }}>
+            {stat.code}
+          </span>
+          <span style={{ color: 'rgba(244, 236, 228, 0.2)', fontSize: '0.625rem' }}>//</span>
+          <span className="editorial-label" style={{ color: 'var(--taupe)', fontSize: '0.5625rem' }}>
+            METRIC
+          </span>
+        </div>
+        <IconComponent size={14} style={{ color: stat.accent, opacity: 0.85 }} />
+      </div>
+
+      {/* Main Metric Value */}
+      <div style={{ margin: '0.15rem 0 0.35rem 0' }}>
+        <div
+          className="font-display stat-number-display"
+          style={{
+            fontSize: 'clamp(2rem, 3.2vw, 2.75rem)',
+            color: 'var(--text-ivory)',
+            lineHeight: 0.95,
+            letterSpacing: '-0.02em',
+            fontVariantNumeric: 'tabular-nums'
+          }}
+        >
+          {displayValue < 10 && stat.value >= 10 ? `0${displayValue}` : displayValue}
+          {stat.suffix}
+        </div>
+      </div>
+
+      {/* Bottom Labels & Accent Line */}
+      <div>
+        <div
+          className="editorial-label"
+          style={{
+            color: 'var(--text-ivory)',
+            fontSize: '0.625rem',
+            letterSpacing: '0.1em',
+            marginBottom: '2px',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}
+        >
+          {stat.label}
+        </div>
+        <div className="font-mono" style={{ fontSize: '0.5625rem', color: 'var(--text-muted-dark)' }}>
+          {stat.subtext}
+        </div>
+
+        {/* Animated Terracotta Accent Bar */}
+        <div
+          className="stat-accent-bar"
+          style={{
+            marginTop: '0.5rem',
+            height: '2px',
+            width: revealed ? '100%' : '0%',
+            backgroundColor: stat.accent,
+            transition: 'width 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default function About({ onOpenResume, onNavigateToSection }) {
   return (
@@ -25,46 +219,46 @@ export default function About({ onOpenResume, onNavigateToSection }) {
             justifyContent: 'space-between',
             paddingBottom: '1rem',
             borderBottom: '1px solid var(--line-light)',
-            gap: '1rem',
-            marginBottom: '1.75rem'
+            gap: '0.75rem',
+            marginBottom: '1.5rem'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
             <span className="editorial-label" style={{ color: 'var(--terracotta)' }}>
               AVAILABLE FOR ROLES &amp; COLLABORATIONS
             </span>
-            <span style={{ color: 'var(--taupe)' }}>/</span>
-            <span className="editorial-label" style={{ color: 'var(--taupe)' }}>
+            <span style={{ color: 'var(--taupe)' }} className="hide-on-mobile">/</span>
+            <span className="editorial-label hide-on-mobile" style={{ color: 'var(--taupe)' }}>
               PUNE, INDIA
             </span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
             <span className="editorial-label" style={{ color: 'var(--text-dark)' }}>
               COMPUTER SCIENCE &amp; ENGINEERING (AI &amp; ML)
             </span>
-            <span className="editorial-label" style={{ color: 'var(--taupe)' }}>
+            <span className="editorial-label hide-on-mobile" style={{ color: 'var(--taupe)' }}>
               EDITION 2026
             </span>
           </div>
         </div>
 
         {/* Massive Editorial Headline */}
-        <div style={{ position: 'relative', marginBottom: '2rem' }}>
+        <div style={{ position: 'relative', marginBottom: '1.75rem' }}>
           <div
             className="editorial-label"
-            style={{ color: 'var(--taupe)', letterSpacing: '0.28em', marginBottom: '0.35rem' }}
+            style={{ color: 'var(--taupe)', letterSpacing: '0.24em', marginBottom: '0.35rem' }}
           >
             PORTFOLIO VOL. 26 — SELECTED ENGINEERING ARCHIVE
           </div>
 
           <h1
-            className="font-display"
+            className="font-display about-hero-name"
             style={{
-              fontSize: 'clamp(3.5rem, 10.5vw, 11rem)',
+              fontSize: 'clamp(2.4rem, 8.5vw, 9.5rem)',
               color: 'var(--text-dark)',
               textTransform: 'uppercase',
-              lineHeight: 0.85,
+              lineHeight: 0.88,
               letterSpacing: '-0.02em',
               wordBreak: 'break-word'
             }}
@@ -79,13 +273,13 @@ export default function About({ onOpenResume, onNavigateToSection }) {
               alignItems: 'baseline',
               justifyContent: 'space-between',
               marginTop: '0.65rem',
-              gap: '1rem'
+              gap: '0.75rem'
             }}
           >
             <h2
               className="font-heading"
               style={{
-                fontSize: 'clamp(1.1rem, 2.4vw, 2.1rem)',
+                fontSize: 'clamp(0.95rem, 2.2vw, 1.85rem)',
                 color: 'var(--text-dark)',
                 fontWeight: 700,
                 letterSpacing: '-0.02em'
@@ -104,7 +298,7 @@ export default function About({ onOpenResume, onNavigateToSection }) {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(12, 1fr)',
-            gap: 'clamp(1.5rem, 3.5vw, 3.5rem)',
+            gap: 'clamp(1.25rem, 3vw, 3rem)',
             alignItems: 'start',
             marginBottom: '2.5rem'
           }}
@@ -118,9 +312,9 @@ export default function About({ onOpenResume, onNavigateToSection }) {
               style={{
                 position: 'relative',
                 border: '1px solid var(--text-dark)',
-                padding: '8px',
+                padding: '6px',
                 backgroundColor: '#fff',
-                boxShadow: '10px 10px 0px var(--text-dark)'
+                boxShadow: '8px 8px 0px var(--text-dark)'
               }}
             >
               <div
@@ -135,6 +329,7 @@ export default function About({ onOpenResume, onNavigateToSection }) {
                 <img
                   src={PERSONAL_INFO.photo}
                   alt={PERSONAL_INFO.name}
+                  loading="eager"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'contrast(1.05)' }}
                 />
                 <div
@@ -143,8 +338,8 @@ export default function About({ onOpenResume, onNavigateToSection }) {
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    padding: '0.65rem 0.875rem',
-                    backgroundColor: 'rgba(7, 5, 5, 0.88)',
+                    padding: '0.5rem 0.75rem',
+                    backgroundColor: 'rgba(7, 5, 5, 0.9)',
                     backdropFilter: 'blur(8px)',
                     color: 'var(--text-ivory)',
                     display: 'flex',
@@ -155,7 +350,7 @@ export default function About({ onOpenResume, onNavigateToSection }) {
                   <span className="editorial-label" style={{ color: 'var(--text-ivory)', fontSize: '0.625rem' }}>
                     SUSHRUT KALE · ENGINEER
                   </span>
-                  <span className="font-mono" style={{ fontSize: '0.625rem', color: 'var(--terracotta)' }}>
+                  <span className="font-mono" style={{ fontSize: '0.625rem', color: 'var(--terracotta)', fontWeight: 700 }}>
                     MITAOE '29
                   </span>
                 </div>
@@ -163,26 +358,25 @@ export default function About({ onOpenResume, onNavigateToSection }) {
             </div>
           </div>
 
-          {/* Narrative + Academic Foundation Column */}
+          {/* Narrative + Statistics + Academic Foundation Column */}
           <div
             className="hero-content-col"
             style={{
               gridColumn: 'span 7',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between',
-              height: '100%'
+              justifyContent: 'space-between'
             }}
           >
-            <div style={{ marginBottom: '1.75rem' }}>
+            <div style={{ marginBottom: '1.25rem' }}>
               <div
                 className="font-ui"
                 style={{
-                  fontSize: 'clamp(1.15rem, 1.8vw, 1.55rem)',
+                  fontSize: 'clamp(1.05rem, 1.6vw, 1.45rem)',
                   color: 'var(--text-dark)',
                   lineHeight: 1.45,
                   fontWeight: 600,
-                  marginBottom: '1rem',
+                  marginBottom: '0.85rem',
                   letterSpacing: '-0.01em'
                 }}
               >
@@ -194,10 +388,10 @@ export default function About({ onOpenResume, onNavigateToSection }) {
                 <p
                   key={idx}
                   style={{
-                    fontSize: '0.9375rem',
+                    fontSize: '0.9rem',
                     color: 'var(--text-muted)',
-                    lineHeight: 1.65,
-                    marginBottom: idx === 0 ? '0.75rem' : '0'
+                    lineHeight: 1.6,
+                    marginBottom: idx === 0 ? '0.65rem' : '0'
                   }}
                 >
                   {para}
@@ -210,13 +404,13 @@ export default function About({ onOpenResume, onNavigateToSection }) {
               style={{
                 backgroundColor: 'var(--bg-dark)',
                 color: 'var(--text-ivory)',
-                padding: '1.25rem 1.5rem',
+                padding: '1.1rem 1.25rem',
                 border: '1px solid var(--text-dark)',
-                marginBottom: '1.75rem'
+                marginBottom: '1.25rem'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--terracotta)' }}>
-                <GraduationCap size={18} />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem', color: 'var(--terracotta)' }}>
+                <GraduationCap size={16} />
                 <span className="editorial-label" style={{ color: 'var(--terracotta)' }}>
                   ACADEMIC FOUNDATION
                 </span>
@@ -225,47 +419,79 @@ export default function About({ onOpenResume, onNavigateToSection }) {
               <div
                 className="font-ui"
                 style={{
-                  fontSize: '1.05rem',
+                  fontSize: 'clamp(0.95rem, 1.4vw, 1.05rem)',
                   fontWeight: 700,
                   color: 'var(--text-ivory)',
-                  marginBottom: '0.25rem'
+                  marginBottom: '0.2rem'
                 }}
               >
                 {PERSONAL_INFO.education.combinedDisplay}
               </div>
 
-              <div className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--text-muted-dark)' }}>
+              <div className="font-mono" style={{ fontSize: '0.6875rem', color: 'var(--text-muted-dark)' }}>
                 {PERSONAL_INFO.education.degree} · Pune, Maharashtra, India
+              </div>
+            </div>
+
+            {/* ─────────── ANIMATED STATISTICS FLASHCARDS COMPOSITION ─────────── */}
+            <div style={{ marginBottom: '1.5rem' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginBottom: '0.5rem',
+                  paddingBottom: '0.35rem',
+                  borderBottom: '1px solid var(--line-light)'
+                }}
+              >
+                <span className="editorial-label" style={{ color: 'var(--taupe)', fontSize: '0.5625rem' }}>
+                  DOCUMENTED ARCHIVE METRICS // CLICK TO JUMP
+                </span>
+                <span className="font-mono" style={{ fontSize: '0.5625rem', color: 'var(--terracotta)' }}>
+                  VERIFIED DATA
+                </span>
+              </div>
+
+              <div className="about-stats-grid">
+                {STATS_CONFIG.map((stat, idx) => (
+                  <StatCard
+                    key={stat.code}
+                    stat={stat}
+                    onNavigateToSection={onNavigateToSection}
+                    delay={idx * 80}
+                  />
+                ))}
               </div>
             </div>
 
             {/* CTAs & Social Links */}
             <div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.875rem', marginBottom: '1.25rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1rem' }}>
                 <button
                   onClick={() => onNavigateToSection('projects')}
                   className="btn-editorial btn-primary-dark"
-                  style={{ fontSize: '0.75rem', padding: '0.625rem 1.25rem' }}
+                  style={{ fontSize: '0.75rem', padding: '0.625rem 1.15rem' }}
                 >
                   VIEW PROJECT ARCHIVE <ArrowDown size={14} />
                 </button>
                 <button
                   onClick={() => onNavigateToSection('contact')}
                   className="btn-editorial btn-outline-dark"
-                  style={{ fontSize: '0.75rem', padding: '0.625rem 1.25rem' }}
+                  style={{ fontSize: '0.75rem', padding: '0.625rem 1.15rem' }}
                 >
                   GET IN TOUCH <ArrowUpRight size={14} />
                 </button>
                 <button
                   onClick={onOpenResume}
                   className="btn-editorial btn-outline-dark"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', padding: '0.625rem 1.25rem' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', padding: '0.625rem 1.15rem' }}
                 >
                   <FileCode2 size={14} /> RÉSUMÉ PREVIEW
                 </button>
               </div>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1.5rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1.25rem' }}>
                 <a
                   href={PERSONAL_INFO.links.github}
                   target="_blank"
@@ -296,7 +522,7 @@ export default function About({ onOpenResume, onNavigateToSection }) {
                 <a
                   href={`mailto:${PERSONAL_INFO.links.email}`}
                   className="editorial-link editorial-label"
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--text-dark)' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--terracotta)' }}
                 >
                   <Mail size={14} /> EMAIL ↗
                 </a>
@@ -327,14 +553,49 @@ export default function About({ onOpenResume, onNavigateToSection }) {
       </div>
 
       <style>{`
+        .about-stats-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0.75rem;
+        }
+
+        .about-stat-card:hover {
+          border-color: var(--terracotta) !important;
+          background-color: #0E0C0C !important;
+          transform: translateY(-2px) !important;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .about-stat-card:focus-visible {
+          border-color: var(--terracotta) !important;
+          box-shadow: 0 0 0 2px var(--terracotta);
+        }
+
+        @media (max-width: 1024px) {
+          .about-stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
         @media (max-width: 900px) {
           .hero-image-col {
             grid-column: span 12 !important;
-            max-width: 320px;
-            margin-bottom: 1.5rem;
+            max-width: min(280px, 80vw);
+            margin: 0 auto 1.5rem auto;
           }
           .hero-content-col {
             grid-column: span 12 !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .about-stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+          }
+          .about-stat-card {
+            padding: 0.75rem 0.65rem !important;
+            min-height: 116px !important;
           }
         }
       `}</style>

@@ -124,7 +124,8 @@ export default function Projects({ onSelectProject }) {
               padding: '0.4rem 0.75rem',
               backgroundColor: 'rgba(244, 236, 228, 0.04)',
               border: '1px solid rgba(244, 236, 228, 0.12)',
-              minWidth: '220px'
+              minWidth: 'min(220px, 100%)',
+              maxWidth: '100%'
             }}
           >
             <Search size={14} style={{ color: 'var(--taupe)' }} />
