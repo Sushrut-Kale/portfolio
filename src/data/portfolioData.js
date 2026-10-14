@@ -20,6 +20,8 @@ export const PERSONAL_INFO = {
     linkedin: "https://www.linkedin.com/in/sushrut-kale1367/",
     instagram: "https://www.instagram.com/me_sushrut.13"
   },
+  resumePdf: "./resume/Sushrut_Kale_Resume.pdf",
+  resumeFilename: "Sushrut_Kale_Resume.pdf",
   photo: "./pfp/official%20sushrut.jpg",
   stats: [
     { label: "Projects Engineered", value: "18", sub: "Production & Open Source" },

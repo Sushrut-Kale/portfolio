@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowDown, ArrowUpRight, Github, Linkedin, Instagram, Mail, FileCode2, GraduationCap, Sparkles, FolderGit2, Cpu, Trophy, Award } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Github, Linkedin, Instagram, Mail, FileCode2, FileText, GraduationCap, Sparkles, FolderGit2, Cpu, Trophy, Award } from 'lucide-react';
 import { PERSONAL_INFO, PROJECTS, SKILL_CATEGORIES, EVENTS_DATA, CERTIFICATES } from '../data/portfolioData';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 
@@ -482,7 +482,7 @@ export default function About({ onOpenResume, onNavigateToSection }) {
                   className="btn-editorial btn-outline-dark"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', padding: '0.625rem 1.15rem' }}
                 >
-                  <FileCode2 size={14} /> RÉSUMÉ PREVIEW
+                  <FileText size={14} /> VIEW RESUME <ArrowUpRight size={13} />
                 </button>
               </div>
 

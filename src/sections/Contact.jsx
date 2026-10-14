@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Github, Linkedin, Instagram, ArrowUp, Send, CheckCircle2, Copy, FileText } from 'lucide-react';
+import { Mail, Github, Linkedin, Instagram, ArrowUp, Send, CheckCircle2, Copy, FileText, Download } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export default function Contact({ onOpenResume }) {
@@ -187,13 +187,23 @@ export default function Contact({ onOpenResume }) {
                 <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted-dark)', marginBottom: '0.85rem', lineHeight: 1.5 }}>
                   View academic foundations, coursework, competitive honors, and verified technical stack summary.
                 </p>
-                <button
-                  onClick={onOpenResume}
-                  className="btn-editorial btn-outline-ivory"
-                  style={{ fontSize: '0.6875rem', padding: '0.45rem 0.85rem' }}
-                >
-                  <FileText size={13} /> PREVIEW / DOWNLOAD RÉSUMÉ
-                </button>
+                <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
+                  <button
+                    onClick={onOpenResume}
+                    className="btn-editorial btn-terracotta"
+                    style={{ fontSize: '0.6875rem', padding: '0.45rem 0.85rem' }}
+                  >
+                    <FileText size={13} /> VIEW RESUME SECTION
+                  </button>
+                  <a
+                    href={PERSONAL_INFO.resumePdf || './resume/Sushrut_Kale_Resume.pdf'}
+                    download={PERSONAL_INFO.resumeFilename || 'Sushrut_Kale_Resume.pdf'}
+                    className="btn-editorial btn-outline-ivory"
+                    style={{ fontSize: '0.6875rem', padding: '0.45rem 0.85rem' }}
+                  >
+                    <Download size={13} /> DOWNLOAD PDF
+                  </a>
+                </div>
               </div>
 
               {/* Verified Social Networks: GitHub, LinkedIn, Instagram only */}

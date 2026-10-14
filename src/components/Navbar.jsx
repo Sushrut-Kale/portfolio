@@ -35,7 +35,8 @@ export default function Navbar({ activeSection: controlledActiveSection, onSelec
     { label: 'EXPERIENCE', href: '#experience', id: 'experience', keyNum: '4' },
     { label: 'EVENTS', href: '#events', id: 'events', keyNum: '5' },
     { label: 'CERTIFICATIONS', href: '#certifications', id: 'certifications', keyNum: '6' },
-    { label: 'CONTACT', href: '#contact', id: 'contact', keyNum: '7' }
+    { label: 'RESUME', href: '#resume', id: 'resume', keyNum: '7' },
+    { label: 'CONTACT', href: '#contact', id: 'contact', keyNum: '8' }
   ];
 
   // Scroll detection for background opacity
@@ -291,7 +292,7 @@ export default function Navbar({ activeSection: controlledActiveSection, onSelec
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div className="editorial-label" style={{ color: 'var(--taupe)', marginBottom: '0.25rem' }}>
-              SECTION INDEX (PRESS 1-7 ON KEYBOARD)
+              SECTION INDEX (PRESS 1-8 ON KEYBOARD)
             </div>
 
             {navLinks.map((link) => {

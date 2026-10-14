@@ -7,6 +7,7 @@ import Skills from './sections/Skills';
 import Experience from './sections/Experience';
 import Events from './sections/Events';
 import Certifications from './sections/Certifications';
+import Resume from './sections/Resume';
 import Contact from './sections/Contact';
 import MediaModal from './components/MediaModal';
 import ProjectCaseModal from './components/ProjectCaseModal';
@@ -23,7 +24,8 @@ const SECTIONS = [
   { id: 'experience', label: 'EXPERIENCE', num: '04' },
   { id: 'events', label: 'EVENTS', num: '05' },
   { id: 'certifications', label: 'CERTIFICATIONS', num: '06' },
-  { id: 'contact', label: 'CONTACT', num: '07' }
+  { id: 'resume', label: 'RESUME', num: '07' },
+  { id: 'contact', label: 'CONTACT', num: '08' }
 ];
 
 export default function App() {
@@ -95,7 +97,7 @@ export default function App() {
         <div key={activeSection} className="section-enter-anim" style={{ width: '100%' }}>
           {activeSection === 'about' && (
             <About
-              onOpenResume={() => setIsResumeOpen(true)}
+              onOpenResume={() => handleSelectSection('resume')}
               onNavigateToSection={handleSelectSection}
             />
           )}
@@ -131,9 +133,15 @@ export default function App() {
             />
           )}
 
+          {activeSection === 'resume' && (
+            <Resume
+              onOpenMedia={(media) => setActiveMedia(media)}
+            />
+          )}
+
           {activeSection === 'contact' && (
             <Contact
-              onOpenResume={() => setIsResumeOpen(true)}
+              onOpenResume={() => handleSelectSection('resume')}
               onTriggerToast={showComingSoonToast}
             />
           )}

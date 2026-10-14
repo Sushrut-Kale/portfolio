@@ -198,7 +198,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             </div>
           </div>
 
-          {/* Notice & PDF Integration Note */}
+          {/* Verified Official PDF Integration */}
           <div
             style={{
               padding: '1.25rem',
@@ -208,20 +208,30 @@ export default function ResumeModal({ isOpen, onClose }) {
             }}
           >
             <div className="editorial-label" style={{ color: 'var(--terracotta)', marginBottom: '0.25rem' }}>
-              DOCUMENT DISPATCH
+              OFFICIAL DOCUMENT ATTACHED
             </div>
             <p style={{ fontSize: '0.875rem', color: 'var(--text-muted-dark)' }}>
-              To download or request the full unredacted official PDF résumé with complete contact details and academic transcripts, click below or drop a direct line to <strong>{PERSONAL_INFO.links.email}</strong>.
+              The complete verified PDF curriculum vitae is ready for viewing and immediate download.
             </p>
           </div>
 
           {/* Modal Actions */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
             <a
-              href={`mailto:${PERSONAL_INFO.links.email}?subject=Resume%20Request%20-%20Sushrut%20Kale`}
+              href={PERSONAL_INFO.resumePdf || './resume/Sushrut_Kale_Resume.pdf'}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-editorial btn-terracotta"
             >
-              <Mail size={16} /> REQUEST FULL RESUME PDF
+              <ExternalLink size={16} /> VIEW RESUME (PDF)
+            </a>
+
+            <a
+              href={PERSONAL_INFO.resumePdf || './resume/Sushrut_Kale_Resume.pdf'}
+              download={PERSONAL_INFO.resumeFilename || 'Sushrut_Kale_Resume.pdf'}
+              className="btn-editorial btn-outline-ivory"
+            >
+              <Download size={16} /> DOWNLOAD PDF
             </a>
 
             <button onClick={onClose} className="btn-editorial btn-outline-ivory">
