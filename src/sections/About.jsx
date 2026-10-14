@@ -3,17 +3,12 @@ import { ArrowDown, ArrowUpRight, Github, Linkedin, Instagram, Mail, FileCode2, 
 import { PERSONAL_INFO, PROJECTS, SKILL_CATEGORIES, EVENTS_DATA, CERTIFICATES } from '../data/portfolioData';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 
-// Dynamic statistics calculated directly from verified source datasets
-const uniqueSkillsCount = new Set(
-  SKILL_CATEGORIES.flatMap((c) => c.skills.map((s) => s.name.trim().toLowerCase()))
-).size;
-
 const STATS_CONFIG = [
   {
     code: '01',
     label: 'PROJECT ARCHIVE',
-    value: PROJECTS.length,
-    suffix: '',
+    value: 15,
+    suffix: '+',
     subtext: 'Engineered Systems',
     targetSection: 'projects',
     accent: 'var(--terracotta)',
@@ -22,8 +17,8 @@ const STATS_CONFIG = [
   {
     code: '02',
     label: 'TECHNICAL SKILLS',
-    value: uniqueSkillsCount,
-    suffix: '',
+    value: 35,
+    suffix: '+',
     subtext: '7 Core Domains',
     targetSection: 'skills',
     accent: 'var(--dusty-blue)',
@@ -32,8 +27,8 @@ const STATS_CONFIG = [
   {
     code: '03',
     label: 'DOCUMENTED EVENTS',
-    value: EVENTS_DATA.length,
-    suffix: '',
+    value: 10,
+    suffix: '+',
     subtext: 'Hackathons & Forums',
     targetSection: 'events',
     accent: '#D47355',
@@ -42,8 +37,8 @@ const STATS_CONFIG = [
   {
     code: '04',
     label: 'VERIFIED CREDENTIALS',
-    value: CERTIFICATES.length,
-    suffix: '',
+    value: 20,
+    suffix: '+',
     subtext: 'Industry Certifications',
     targetSection: 'certifications',
     accent: 'var(--taupe)',
