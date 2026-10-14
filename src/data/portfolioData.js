@@ -9,9 +9,10 @@ export const PERSONAL_INFO = {
   education: {
     degree: "B.Tech in Computer Science Engineering (AI & ML)",
     institution: "MIT Academy of Engineering",
+    period: "2025 – 2029",
     cgpa: "8.9/10",
-    combinedDisplay: "MIT Academy of Engineering · CGPA 8.9/10",
-    status: "Active Student · Class of 2027"
+    combinedDisplay: "MIT Academy of Engineering · CGPA 8.9/10 (2025–2029)",
+    status: "Active Undergraduate · Class of 2029"
   },
   links: {
     email: "sushrutkale13@gmail.com",
@@ -28,10 +29,11 @@ export const PERSONAL_INFO = {
   ],
   bioParagraphs: [
     "I build intelligent software that transforms complex problems into practical, interactive experiences. My interests span AI/ML, full-stack development, data visualization, and immersive 3D technologies.",
-    "As a Computer Science Engineering student specializing in AI and Machine Learning at MIT Academy of Engineering, I focus on engineering software that is reliable, intuitive, and genuinely useful. Beyond coursework, I actively build full-stack applications, compete in national hackathons, and explore emerging technologies."
+    "As a Computer Science Engineering student specializing in AI and Machine Learning at MIT Academy of Engineering (2025–2029), I focus on engineering software that is reliable, intuitive, and genuinely useful. Beyond coursework, I actively build full-stack applications, compete in national hackathons, and explore emerging technologies."
   ]
 };
 
+// Exact 18 Projects in unalterable sequence
 export const PROJECTS = [
   {
     id: "sanchay-ai",
@@ -117,7 +119,7 @@ export const PROJECTS = [
     status: "Completed",
     repoUrl: "https://github.com/Sushrut-Kale/HBTM",
     liveUrl: null,
-    previewImage: "./events/HBTM.png",
+    previewImage: null,
     accent: "#AC4033",
     summary: "Real-time emergency medical logistics platform tracking critical ICU/oxygen beds and computing dynamic trauma routing.",
     problemStatement: "During surge events and road accidents, ambulances lose critical golden hours driving to saturated hospitals with zero available ICU beds.",
@@ -466,10 +468,10 @@ export const SKILL_CATEGORIES = [
     domain: "Core Engineering",
     description: "Languages used for algorithmic problem solving, backend systems, and web architecture.",
     skills: [
-      { name: "Python 3.10+", level: "Expert", desc: "Scientific computing, async FastAPI backends, and ML inference.", projects: ["AI Learning Conductor", "Timetable", "AgriN", "Manim"] },
-      { name: "JavaScript (ES2024)", level: "Expert", desc: "Modern ECMAScript, event loops, DOM performance, and async paradigms.", projects: ["Campus 3D", "ClubSync", "AISEP", "Intelliforge"] },
+      { name: "Python 3.10+", level: "Core", desc: "Scientific computing, async FastAPI backends, and ML inference.", projects: ["AI Learning Conductor", "Timetable", "AgriN", "Manim"] },
+      { name: "JavaScript (ES2024)", level: "Core", desc: "Modern ECMAScript, event loops, DOM performance, and async paradigms.", projects: ["Campus 3D", "ClubSync", "AISEP", "Intelliforge"] },
       { name: "TypeScript", level: "Proficient", desc: "Type-safe interfaces, generics, and large-scale component architecture.", projects: ["Campus 3D", "ClubSync"] },
-      { name: "C++", level: "Intermediate", desc: "Object-oriented systems, memory efficiency, and microcontroller firmware.", projects: ["Ultrasonic Radar Detection"] },
+      { name: "C++", level: "Working Knowledge", desc: "Object-oriented systems, memory efficiency, and microcontroller firmware.", projects: ["Ultrasonic Radar Detection"] },
       { name: "SQL (PostgreSQL / MySQL / Oracle)", level: "Proficient", desc: "Relational modeling, complex joins, subqueries, and DDL/DML execution.", projects: ["Data Visualization", "Timetable"] }
     ]
   },
@@ -478,9 +480,9 @@ export const SKILL_CATEGORIES = [
     domain: "Machine Learning",
     description: "Probabilistic modeling, constraint optimization, and neural applications.",
     skills: [
-      { name: "Google OR-Tools (CP-SAT)", level: "Advanced", desc: "Formulating NP-hard discrete scheduling and combinatorial constraint satisfaction.", projects: ["Timetable", "AI Learning Conductor"] },
-      { name: "Bayesian Knowledge Tracing (BKT)", level: "Advanced", desc: "Modeling probabilistic student cognitive mastery across sequential assessment events.", projects: ["AI Learning Conductor"] },
-      { name: "PyTorch & Deep Learning", level: "Intermediate", desc: "Neural network layers, tensors, and training workflows.", projects: ["Sanchay AI"] },
+      { name: "Google OR-Tools (CP-SAT)", level: "Specialized", desc: "Formulating NP-hard discrete scheduling and combinatorial constraint satisfaction.", projects: ["Timetable", "AI Learning Conductor"] },
+      { name: "Bayesian Knowledge Tracing (BKT)", level: "Specialized", desc: "Modeling probabilistic student cognitive mastery across sequential assessment events.", projects: ["AI Learning Conductor"] },
+      { name: "PyTorch & Deep Learning", level: "Applied", desc: "Neural network layers, tensors, and training workflows.", projects: ["Sanchay AI"] },
       { name: "Scikit-Learn & ML Pipelines", level: "Proficient", desc: "Multi-variable regression, feature scaling, and model evaluation metrics.", projects: ["AgriN", "Datathon 2026"] },
       { name: "Gemini API & LLM Orchestration", level: "Proficient", desc: "Structured outputs, function calling, and personalized recommendations.", projects: ["ClubSync", "AI Learning Conductor"] },
       { name: "Ollama (Local Offline Inference)", level: "Proficient", desc: "Zero-latency local model execution for privacy and offline resilience.", projects: ["AI Learning Conductor"] }
@@ -491,12 +493,12 @@ export const SKILL_CATEGORIES = [
     domain: "Web & API Systems",
     description: "End-to-end reactive client architectures and high-performance server APIs.",
     skills: [
-      { name: "React 18 / 19", level: "Expert", desc: "Component architecture, hooks, concurrent rendering, and performance optimization.", projects: ["Campus 3D", "ClubSync", "AISEP", "Sanchay AI"] },
+      { name: "React 18 / 19", level: "Core", desc: "Component architecture, hooks, concurrent rendering, and performance optimization.", projects: ["Campus 3D", "ClubSync", "AISEP", "Sanchay AI"] },
       { name: "Next.js 16", level: "Proficient", desc: "App Router, server components, and production full-stack deployment.", projects: ["Timetable"] },
-      { name: "FastAPI (Async Python)", level: "Advanced", desc: "High-throughput asynchronous Python endpoints with Pydantic validation.", projects: ["AI Learning Conductor", "Timetable", "Sanchay AI"] },
+      { name: "FastAPI (Async Python)", level: "Core", desc: "High-throughput asynchronous Python endpoints with Pydantic validation.", projects: ["AI Learning Conductor", "Timetable", "Sanchay AI"] },
       { name: "Node.js & Express", level: "Proficient", desc: "RESTful services, middleware design, and JSON payload handling.", projects: ["ClubSync", "HBTM", "Task Manager Ecosystem"] },
       { name: "WebSockets & Socket.io", level: "Proficient", desc: "Sub-second bidirectional telemetry streaming for emergency logistics.", projects: ["HBTM"] },
-      { name: "Tailwind CSS & Vanilla CSS", level: "Expert", desc: "Precision design systems, editorial layouts, and responsive fluid grids.", projects: ["All Projects"] }
+      { name: "Tailwind CSS & Vanilla CSS", level: "Core", desc: "Precision design systems, editorial layouts, and responsive fluid grids.", projects: ["All Projects"] }
     ]
   },
   {
@@ -516,9 +518,9 @@ export const SKILL_CATEGORIES = [
     domain: "Interactive Mechanics",
     description: "Real-time game loops, physics simulations, and player control systems.",
     skills: [
-      { name: "Game Loop & State Machines", level: "Proficient", desc: "Framerate-independent update loops and player state architecture.", projects: ["GTA MegaJam", "Maze AI"] },
-      { name: "Movement & Collision Physics", level: "Proficient", desc: "Raycasting, bounding boxes, and velocity-based controller mechanics.", projects: ["GTA MegaJam", "Campus 3D"] },
-      { name: "Rapid Game Jam Prototyping", level: "Proficient", desc: "Delivering finished playable games under 48-hour competitive constraints.", projects: ["GTA MegaJam"] }
+      { name: "Game Loop & State Machines", level: "Applied", desc: "Framerate-independent update loops and player state architecture.", projects: ["GTA MegaJam", "Maze AI"] },
+      { name: "Movement & Collision Physics", level: "Applied", desc: "Raycasting, bounding boxes, and velocity-based controller mechanics.", projects: ["GTA MegaJam", "Campus 3D"] },
+      { name: "Rapid Game Jam Prototyping", level: "Applied", desc: "Delivering finished playable games under 48-hour competitive constraints.", projects: ["GTA MegaJam"] }
     ]
   },
   {
@@ -529,9 +531,9 @@ export const SKILL_CATEGORIES = [
       { name: "Three.js", level: "Advanced", desc: "Scene graphs, lighting, custom geometries, materials, and WebGL rendering.", projects: ["Campus 3D"] },
       { name: "React Three Fiber (R3F)", level: "Advanced", desc: "Declarative 3D component systems integrated with React state lifecycles.", projects: ["Campus 3D"] },
       { name: "@react-three/drei", level: "Advanced", desc: "Camera controls, loaders, procedural environments, and CatmullRom splines.", projects: ["Campus 3D"] },
-      { name: "A* Spatial Pathfinding in 3D", level: "Proficient", desc: "Real-time waypoint pathfinding rendered as glowing 3D navigational tubes.", projects: ["Campus 3D"] },
-      { name: "WebGL Context-Loss Recovery", level: "Proficient", desc: "Resilient shader and texture re-instantiation preventing browser crashes.", projects: ["Campus 3D"] },
-      { name: "Blender 3D", level: "Intermediate", desc: "Low-poly asset optimization, UV unwrapping, and glTF/GLB export pipeline.", projects: ["Campus 3D"] }
+      { name: "A* Spatial Pathfinding in 3D", level: "Specialized", desc: "Real-time waypoint pathfinding rendered as glowing 3D navigational tubes.", projects: ["Campus 3D"] },
+      { name: "WebGL Context-Loss Recovery", level: "Specialized", desc: "Resilient shader and texture re-instantiation preventing browser crashes.", projects: ["Campus 3D"] },
+      { name: "Blender 3D", level: "Working Knowledge", desc: "Low-poly asset optimization, UV unwrapping, and glTF/GLB export pipeline.", projects: ["Campus 3D"] }
     ]
   },
   {
@@ -539,12 +541,12 @@ export const SKILL_CATEGORIES = [
     domain: "DevOps & Infrastructure",
     description: "Industry tools, version control, cloud platforms, and database services.",
     skills: [
-      { name: "Git & GitHub", level: "Expert", desc: "Version control, branching strategy, code reviews, and open-source hygiene.", projects: ["All Projects"] },
-      { name: "Vercel & Cloud Hosting", level: "Expert", desc: "Edge deployments, automated CI/CD pipelines, and domain routing.", projects: ["ClubSync", "AISEP", "Portfolio"] },
+      { name: "Git & GitHub", level: "Core", desc: "Version control, branching strategy, code reviews, and open-source hygiene.", projects: ["All Projects"] },
+      { name: "Vercel & Cloud Hosting", level: "Core", desc: "Edge deployments, automated CI/CD pipelines, and domain routing.", projects: ["ClubSync", "AISEP", "Portfolio"] },
       { name: "MongoDB & Mongoose", level: "Proficient", desc: "Document modeling, indexing, aggregation pipelines, and Atlas clusters.", projects: ["ClubSync", "HBTM", "Task Manager Ecosystem"] },
       { name: "Firebase (Auth & Firestore)", level: "Proficient", desc: "Real-time document synchronization and role-based security rules.", projects: ["ClubSync", "AISEP"] },
-      { name: "Docker & Containerization", level: "Intermediate", desc: "Containerized environments for reproducible development and deployments.", projects: ["Sanchay AI"] },
-      { name: "Vite Bundler", level: "Expert", desc: "Optimized roll-up configurations, code splitting, and ultra-fast HMR.", projects: ["Campus 3D", "ClubSync", "AISEP", "Portfolio"] }
+      { name: "Docker & Containerization", level: "Working Knowledge", desc: "Containerized environments for reproducible development and deployments.", projects: ["Sanchay AI"] },
+      { name: "Vite Bundler", level: "Core", desc: "Optimized roll-up configurations, code splitting, and ultra-fast HMR.", projects: ["Campus 3D", "ClubSync", "AISEP", "Portfolio"] }
     ]
   }
 ];
@@ -555,13 +557,13 @@ export const EXPERIENCES = [
     organization: "MIT Academy of Engineering (MITAOE)",
     role: "Software & Machine Learning Intern",
     type: "Internship",
-    period: "Summer 2025",
+    period: "Academic Year 2026–2027",
     location: "Pune, India",
     verifiedDocument: "./experience/MITAOE_Summerinternship.pdf",
     highlights: [
-      "Engineered machine learning pipelines and performed exploratory data analysis on academic datasets.",
-      "Collaborated with faculty researchers on algorithm benchmarking and scientific software integration.",
-      "Developed interactive data visualization modules to communicate analytical findings to department teams."
+      "Contributed to the development of the AI-Integrated Student Engagement Platform (AISEP) for First-Year Students.",
+      "Gained practical engineering experience in software development, artificial intelligence pipelines, and user experience design.",
+      "Collaborated under Internship Coordinator Dr. Puja Verma and Director Dr. Mahesh Goudar."
     ],
     tag: "Verified Internship Document Available"
   },
@@ -569,29 +571,29 @@ export const EXPERIENCES = [
     id: "ecell-mitaoe",
     organization: "E-Cell, MIT Academy of Engineering",
     role: "Marketing & Public Relations Team Member",
-    type: "Campus Organization",
-    period: "2024 – Present",
+    type: "Collegiate Organization",
+    period: "Collegiate Engagement",
     location: "Pune, India",
     verifiedDocument: null,
     highlights: [
-      "Spearheaded digital content strategies and tech branding for annual startup and innovation summits.",
-      "Coordinated with student entrepreneurs, industry mentors, and keynote speakers across campus events.",
-      "Managed sponsor engagement and audience outreach for entrepreneurial competitions."
+      "Contributed to digital content strategies and tech branding for annual entrepreneurship summits.",
+      "Coordinated with student entrepreneurs, mentors, and keynote speakers across campus events.",
+      "Supported sponsor engagement and outreach for collegiate innovation competitions."
     ],
-    tag: "Leadership & Outreach"
+    tag: "Collegiate Leadership"
   },
   {
     id: "astra-aiml",
     organization: "ASTRA — AIML Department Association",
     role: "Technical Team Member",
     type: "Departmental Body",
-    period: "2024 – Present",
+    period: "Collegiate Engagement",
     location: "Pune, India",
     verifiedDocument: null,
     highlights: [
-      "Facilitated peer-to-peer technical workshops on Python, AI integrations, and Git workflows.",
-      "Mentored junior students on competitive programming and modern web frameworks.",
-      "Organized departmental hackathons and coding challenges to build developer community."
+      "Facilitated peer technical workshops on Python fundamentals, AI integrations, and Git workflows.",
+      "Collaborated with peers on algorithmic problem solving and modern web frameworks.",
+      "Participated in departmental coding challenges and technical community initiatives."
     ],
     tag: "Technical Community"
   },
@@ -600,12 +602,12 @@ export const EXPERIENCES = [
     organization: "Vertex — Game Development & Animation Club",
     role: "Technical Member",
     type: "Special Interest Group",
-    period: "2024 – Present",
+    period: "Collegiate Engagement",
     location: "Pune, India",
     verifiedDocument: null,
     highlights: [
       "Explored real-time graphics pipelines, physics engines, and computational geometry.",
-      "Participated in rapid 48-hour game development jams building movement and physics mechanics.",
+      "Participated in collegiate game development jams including GTA MegaJam developing movement mechanics.",
       "Experimented with shader programming and interactive visual storytelling."
     ],
     tag: "Creative Technology"
@@ -613,55 +615,58 @@ export const EXPERIENCES = [
 ];
 
 // Events: Strictly using verified assets from the events/ folder
+// HBTM is Item 01, Fund Arcade is Item 02
 export const EVENTS_DATA = [
   {
     id: "ev-hbtm",
+    number: "01",
     title: "Hack Better Than Me (HBTM)",
-    category: "Award & Hackathon",
+    category: "24-Hour National Hackathon",
     organizer: "IIIT Pune & IEEE Maharashtra Section / IABTM",
     year: "2026",
     statusBadge: "1st Runner-up (2nd Place)",
-    isTopAward: true,
     file: "./events/hbtm_CERTIFICATE.jpg",
     secondaryFile: "./events/HBTM.png",
     fileType: "image",
-    summary: "First Runner-up (2nd Place) at Hack Better Than Me, a 24-Hour National Hackathon centered around 'Agentic AI for Human Potential'.",
-    description: "Awarded Certificate of Excellence as First Runner-up (2nd Place) with team Hackverse at Hack Better Than Me (HBTM), a prestigious 24-hour national hackathon hosted by Indian Institute of Information Technology Pune (IIIT Pune) and IEEE Maharashtra Section / IEEE IIIT Pune Student Branch. Recognized for outstanding innovation and technical excellence in developing AI-driven solutions addressing real-world challenges through human-centered design.",
+    summary: "Certificate of Excellence as First Runner-up (2nd Place) at the 24-Hour National Hackathon centered around 'Agentic AI for Human Potential'.",
+    description: "Awarded Certificate of Excellence as First Runner-up (2nd Place) with team Hackverse at Hack Better Than Me (HBTM), a 24-hour national hackathon hosted by Indian Institute of Information Technology Pune (IIIT Pune) and IEEE Maharashtra Section / IEEE IIIT Pune Student Branch. Recognized for outstanding innovation and technical excellence in developing AI-driven solutions addressing real-world challenges through human-centered design.",
     verificationId: "IIITP/HBTM/W2/004",
     date: "2 August 2026"
   },
   {
     id: "ev-fund-arcade",
+    number: "02",
     title: "Fund Arcade Championship",
-    category: "Award & Hackathon",
-    organizer: "Fund Arcade",
+    category: "Competitive Tech Sprint",
+    organizer: "COEP Technological University / Pune Start-Up Fest '26",
     year: "2026",
     statusBadge: "1st Place Winner",
-    isTopAward: true,
     file: "./events/Certificate_FUND%20ARCADE_FIRST_01.pdf",
     fileType: "pdf",
     summary: "Secured First Place recognition in a competitive tech sprint for exceptional architecture and rapid prototyping.",
-    description: "Awarded 1st Place out of competitive developer cohorts for building an engaging, high-performance financial technology interactive platform with zero-downtime architecture and rapid delivery.",
-    verificationId: "FUND-ARCADE-01",
-    date: "2026"
+    description: "Awarded 1st Place out of competitive developer cohorts for building an engaging financial technology interactive platform at Pune Start-Up Fest '26 hosted at COEP Technological University.",
+    verificationId: "COEP/PSF26/FA-01",
+    date: "January 17–18, 2026"
   },
   {
     id: "ev-isro-hackathon",
+    number: "03",
     title: "ISRO Hackathon",
-    category: "National Hackathon",
+    category: "National Space Technology Challenge",
     organizer: "Indian Space Research Organisation (ISRO)",
     year: "2026",
     statusBadge: "National Participant",
     file: "./events/ISRO%20Hackathon%20Participation%20Certificate.png",
     fileType: "image",
     summary: "Tackled national space technology challenges on geospatial satellite telemetry and spatial algorithms.",
-    description: "Competed in the prestigious national ISRO Hackathon addressing geospatial satellite telemetry, data interpretation, and algorithmic spatial challenges under strict technical guidelines.",
+    description: "Competed in the national ISRO Hackathon addressing geospatial satellite telemetry, data interpretation, and algorithmic spatial challenges under strict technical guidelines.",
     date: "2026"
   },
   {
     id: "ev-techsprint-2026",
+    number: "04",
     title: "TechSprint 2026",
-    category: "Hackathon",
+    category: "The Open Innovation Hackathon",
     organizer: "TechSprint Innovation Forum",
     year: "2026",
     statusBadge: "Participant",
@@ -673,107 +678,115 @@ export const EVENTS_DATA = [
   },
   {
     id: "ev-datathon-2026",
+    number: "05",
     title: "Datathon 2026",
     category: "Competitive Data Science",
-    organizer: "Datathon Consortium",
+    organizer: "MIT Academy of Engineering (MITAOE), Pune",
     year: "2026",
-    statusBadge: "Participant",
+    statusBadge: "Participant (Team NeuralEd)",
     file: "./events/Certificate%20of%20Participation%20in%20Datathon_2026.pdf",
     fileType: "pdf",
     summary: "Built predictive analytics models with advanced feature engineering under competitive time constraints.",
-    description: "Participated in Datathon 2026, conducting rigorous exploratory data analysis, hypothesis testing, and machine learning pipeline tuning on high-dimensional datasets.",
+    description: "Participated in Datathon 2026 with Team NeuralEd, conducting exploratory data analysis, hypothesis testing, and machine learning pipeline tuning on high-dimensional datasets.",
     date: "2026"
   },
   {
     id: "ev-adobe-hackathon",
-    title: "Adobe Hackathon",
-    category: "Hackathon",
+    number: "06",
+    title: "Adobe University Hackathon",
+    category: "University Hackathon",
     organizer: "Adobe",
-    year: "2025",
+    year: "",
     statusBadge: "Participant",
     file: "./events/ADOBE%20HACKATHONE%20PARTICIPATION.pdf",
     fileType: "pdf",
     summary: "Prototyped digital creativity, document interaction paradigms, and smart automated workflows.",
-    description: "Participated in Adobe's specialized hackathon exploring digital creativity, document intelligence, and intuitive UI interactions.",
-    date: "2025"
+    description: "Participated in Adobe University Hackathon exploring digital creativity, document intelligence, and intuitive UI interactions.",
+    date: "Verified"
   },
   {
     id: "ev-inceptia-hackathon",
+    number: "07",
     title: "Inceptia Hackathon",
-    category: "Hackathon",
-    organizer: "Inceptia Tech Challenge",
-    year: "2025",
+    category: "Presentation Submission Round",
+    organizer: "Pimpri Chinchwad College Of Engineering & Research (PCCOE&R)",
+    year: "",
     statusBadge: "Participant",
     file: "./events/INCEPTIA%20HACKTHONE%20PARTICIPATION.pdf",
     fileType: "pdf",
     summary: "Designed rapid full-stack solutions focusing on user ergonomics, responsive UI, and backend reliability.",
-    description: "Competed in Inceptia Hackathon developing agile full-stack prototypes under tight turnaround constraints.",
-    date: "2025"
+    description: "Participated in Presentation Submission Round of Inceptia Hackathon organized by PCCOE&R, Pimpri-Chinchwad, Pune.",
+    date: "Verified"
   },
   {
     id: "ev-valora-hackathon",
-    title: "Valora Hackathon",
-    category: "Hackathon",
-    organizer: "Valora Tech Sprint",
-    year: "2025",
+    number: "08",
+    title: "Velora-1.0 Hackathon 2026",
+    category: "Hackathon Sprint",
+    organizer: "Velora Consortium",
+    year: "2026",
     statusBadge: "Participant",
     file: "./events/PARTICIPATION%20IN%20VALORA%20HACKATHONE.pdf",
     fileType: "pdf",
     summary: "Engineered fintech and distributed systems solutions under competitive sprint conditions.",
-    description: "Participated in Valora Hackathon focusing on distributed transaction verification and smart UI workflows.",
-    date: "2025"
+    description: "Active involvement and successful participation in Velora-1.0 Hackathon 2026, designing distributed software prototypes.",
+    date: "2026"
   },
   {
     id: "ev-gta-megajam",
+    number: "09",
     title: "GTA MegaJam",
-    category: "Game Jam",
-    organizer: "GTA Community / Vertex Club",
-    year: "2025",
+    category: "National Game Jam",
+    organizer: "National Institute of Technology (NIT), Rourkela",
+    year: "",
     statusBadge: "Game Jam Developer",
     file: "./events/Certificate%20of%20Participation%20in%20GTA%20MegaJam.pdf",
     fileType: "pdf",
-    summary: "48-hour continuous game jam with Vertex club, scripting custom player controls and physics.",
-    description: "Built playable game prototypes in 48 hours, programming movement mechanics, camera transitions, and collision bounds.",
-    date: "2025"
+    summary: "Continuous game jam scripting custom player controls, collision bounds, and camera physics.",
+    description: "Participated in GTA MegaJam organized by NIT Rourkela, programming playable game prototypes, movement mechanics, and physics systems.",
+    date: "Verified"
   },
   {
     id: "ev-geforce-day",
+    number: "10",
     title: "GeForce Day 26",
     category: "Technical Forum",
     organizer: "NVIDIA GeForce Community",
     year: "2026",
-    statusBadge: "Delegate",
+    statusBadge: "Participant",
     file: "./events/GeForce%20Day%2026%20Participation%20Certificate.png",
     fileType: "image",
     summary: "Engaged in specialized sessions on GPU compute architectures, real-time ray-tracing, and neural rendering.",
-    description: "Attended NVIDIA GeForce Day 26 technical track covering real-time ray-tracing acceleration, CUDA compute, and graphics rendering pipelines.",
+    description: "Attended NVIDIA GeForce Day 26 technical track covering real-time ray-tracing acceleration, GPU shaders, and graphics pipelines.",
     date: "2026"
   },
   {
     id: "ev-samsung-learn",
+    number: "11",
     title: "Learn @ Samsung",
-    category: "Industry Learning",
+    category: "Industry Technical Program",
     organizer: "Samsung",
-    year: "2025",
+    year: "",
     statusBadge: "Graduate",
     file: "./events/learn@SAMSANG.jpg",
     fileType: "image",
     summary: "Completed Samsung technical learning sessions on connected software ecosystems and smart devices.",
-    description: "Completed Samsung technical curriculum on mobile architectures, smart device sensor integration, and modern connected software ecosystems.",
-    date: "2025"
+    description: "Completed Samsung technical curriculum on mobile architectures, smart device integration, and modern connected software ecosystems.",
+    date: "Verified"
   },
   {
     id: "ev-infinity-canvas",
+    number: "12",
     title: "Infinity Canvas",
     category: "Creative Technology",
-    organizer: "Infinity Canvas Forum",
-    year: "2025",
+    organizer: "Infinity Canvas Showcase",
+    year: "",
     statusBadge: "Creative Technologist",
     file: "./events/infinity%20canvas.png",
     fileType: "image",
     summary: "Explored infinite 2D/3D zoomable canvas paradigms and generative computer graphics interfaces.",
     description: "Participated in Infinity Canvas creative showcase exploring infinite coordinate plane rendering and generative UI paradigms.",
-    date: "2025"
+    date: "Verified"
   }
 ];
 
@@ -998,32 +1011,5 @@ export const CERTIFICATES = [
     file: "./cer/Professional%20Networking%20for%20Career%20Growth.png",
     type: "image",
     description: "Building engineering relationships, open-source community engagement, and industry communication."
-  }
-];
-
-export const COMING_SOON_DATA = [
-  {
-    id: "official-resume-pdf",
-    title: "Official Faculty-Verified Résumé PDF",
-    status: "Pending Update",
-    expected: "Q4 2026",
-    reason: "Currently incorporating latest semester evaluation and verified national competition rankings.",
-    actionPrompt: "Direct transcript and verification available upon request via sushrutkale13@gmail.com."
-  },
-  {
-    id: "edge-ai-demos",
-    title: "Edge AI Mobile Inference Demonstrations",
-    status: "Staging Test",
-    expected: "Q4 2026",
-    reason: "Quantized ONNX and TFLite model packaging for offline vernacular speech recognition (Sanchay AI) in progress.",
-    actionPrompt: "Source code and test scripts available on GitHub repository."
-  },
-  {
-    id: "webrtc-campus-stream",
-    title: "Campus 3D WebRTC Live Cloud Stream",
-    status: "Architecture Staging",
-    expected: "2026",
-    reason: "Pixel-streaming pipeline testing for high-poly campus LOD assets on ultra-low-bandwidth devices.",
-    actionPrompt: "Client-side WebGL engine currently active on desktop browsers."
   }
 ];
