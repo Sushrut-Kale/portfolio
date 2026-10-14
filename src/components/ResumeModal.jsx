@@ -144,7 +144,7 @@ export default function ResumeModal({ isOpen, onClose }) {
               </span>
             </div>
             <div style={{ fontSize: '0.9375rem', color: 'var(--text-muted-dark)' }}>
-              {PERSONAL_INFO.education.degree} (2023 – 2027)
+              {PERSONAL_INFO.education.degree} ({PERSONAL_INFO.education.period})
             </div>
           </div>
 

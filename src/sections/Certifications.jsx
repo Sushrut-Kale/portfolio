@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Search, FileText, Image as ImageIcon, ArrowUpRight, Award, CheckCircle, Filter } from 'lucide-react';
+import { Search, FileText, Image as ImageIcon, ArrowUpRight } from 'lucide-react';
 import { CERTIFICATES } from '../data/portfolioData';
 
-export default function Certificates({ onOpenMedia }) {
+export default function Certifications({ onOpenMedia }) {
   const [activeCategory, setActiveCategory] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -28,15 +28,16 @@ export default function Certificates({ onOpenMedia }) {
   return (
     <section
       id="certifications"
+      className="editorial-section-view"
       style={{
-        padding: '6rem 0',
         backgroundColor: '#070505',
         color: 'var(--text-ivory)',
-        borderBottom: '1px solid rgba(244, 236, 228, 0.12)',
-        position: 'relative'
+        position: 'relative',
+        paddingTop: '86px',
+        paddingBottom: '4rem'
       }}
     >
-      <div className="site-container">
+      <div className="site-container" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         {/* Section Header */}
         <div
           style={{
@@ -45,19 +46,19 @@ export default function Certificates({ onOpenMedia }) {
             alignItems: 'baseline',
             justifyContent: 'space-between',
             borderBottom: '1px solid rgba(244, 236, 228, 0.15)',
-            paddingBottom: '1.5rem',
-            marginBottom: '3rem',
+            paddingBottom: '1.25rem',
+            marginBottom: '2.5rem',
             gap: '1rem'
           }}
         >
           <div>
-            <div className="editorial-label" style={{ color: 'var(--terracotta)', marginBottom: '0.5rem' }}>
+            <div className="editorial-label" style={{ color: 'var(--terracotta)', marginBottom: '0.35rem' }}>
               SECTION 06 / CERTIFIED PROFICIENCY
             </div>
             <h2
               className="font-display"
               style={{
-                fontSize: 'clamp(2.5rem, 6vw, 5.5rem)',
+                fontSize: 'clamp(2.5rem, 6.5vw, 6rem)',
                 color: 'var(--text-ivory)',
                 letterSpacing: '-0.02em',
                 lineHeight: 0.9
@@ -68,11 +69,11 @@ export default function Certificates({ onOpenMedia }) {
           </div>
 
           <div style={{ textAlign: 'right' }}>
-            <div className="editorial-label" style={{ color: 'var(--taupe)', marginBottom: '0.25rem' }}>
+            <div className="editorial-label" style={{ color: 'var(--taupe)', marginBottom: '0.2rem' }}>
               CER/ DIRECTORY ONLY
             </div>
-            <div className="font-mono" style={{ fontSize: '0.8125rem', color: 'var(--text-muted-dark)' }}>
-              22 VERIFIED CREDENTIALS (CISCO, AWS, ANTHROPIC, ORACLE, HP)
+            <div className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--text-muted-dark)' }}>
+              22 VERIFIED INDUSTRY CREDENTIALS
             </div>
           </div>
         </div>
@@ -84,19 +85,19 @@ export default function Certificates({ onOpenMedia }) {
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '1.25rem',
-            marginBottom: '3rem'
+            gap: '1rem',
+            marginBottom: '2.5rem'
           }}
         >
           {/* Category Pills */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className="btn-editorial"
                 style={{
-                  padding: '0.45rem 0.875rem',
+                  padding: '0.4rem 0.8rem',
                   fontSize: '0.6875rem',
                   backgroundColor: activeCategory === cat ? 'var(--terracotta)' : 'rgba(244, 236, 228, 0.04)',
                   color: activeCategory === cat ? '#fff' : 'var(--text-ivory)',
@@ -118,15 +119,15 @@ export default function Certificates({ onOpenMedia }) {
               gap: '0.5rem',
               backgroundColor: 'rgba(244, 236, 228, 0.04)',
               border: '1px solid rgba(244, 236, 228, 0.12)',
-              padding: '0.45rem 0.875rem',
+              padding: '0.4rem 0.75rem',
               width: '100%',
-              maxWidth: '300px'
+              maxWidth: '280px'
             }}
           >
             <Search size={14} style={{ color: 'var(--taupe)' }} />
             <input
               type="text"
-              placeholder="Search by topic, issuer..."
+              placeholder="Search topic or issuer..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
@@ -144,6 +145,7 @@ export default function Certificates({ onOpenMedia }) {
 
         {/* Certificates Grid */}
         <div
+          className="certificates-standard-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
@@ -153,6 +155,8 @@ export default function Certificates({ onOpenMedia }) {
           {filteredCertificates.map((cer) => (
             <div
               key={cer.id}
+              className="certificate-panel-uniform"
+              data-cursor-label="OPEN"
               style={{
                 backgroundColor: 'rgba(244, 236, 228, 0.02)',
                 border: '1px solid rgba(244, 236, 228, 0.1)',
@@ -162,7 +166,6 @@ export default function Certificates({ onOpenMedia }) {
                 justifyContent: 'space-between',
                 transition: 'border-color 0.25s ease, background-color 0.25s ease'
               }}
-              className="certificate-card"
             >
               <div>
                 {/* Meta Top: Format and Issuer */}
@@ -259,7 +262,7 @@ export default function Certificates({ onOpenMedia }) {
                 </p>
               </div>
 
-              {/* Action Button: opens media modal viewer */}
+              {/* Action Button: Opens modal */}
               <div
                 style={{
                   paddingTop: '0.75rem',
@@ -314,9 +317,10 @@ export default function Certificates({ onOpenMedia }) {
       </div>
 
       <style>{`
-        .certificate-card:hover {
+        .certificate-panel-uniform:hover {
           border-color: var(--terracotta) !important;
           background-color: rgba(244, 236, 228, 0.04) !important;
+          transform: translateY(-2px);
         }
       `}</style>
     </section>

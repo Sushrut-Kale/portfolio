@@ -279,6 +279,22 @@ body {
   border: 1px solid rgba(244, 236, 228, 0.12);
 }
 
+/* Editorial Section Transition Animation */
+.section-enter-anim {
+  animation: sectionEntrance 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sectionEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Accessibility: Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

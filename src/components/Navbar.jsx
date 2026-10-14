@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, Clock } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
-export default function Navbar() {
+export default function Navbar({ activeSection: controlledActiveSection, onSelectSection }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('about');
+  const [internalActiveSection, setInternalActiveSection] = useState('about');
   const [istTime, setIstTime] = useState('');
+
+  const activeSection = controlledActiveSection || internalActiveSection;
 
   // Live IST Clock
   useEffect(() => {
@@ -36,22 +38,10 @@ export default function Navbar() {
     { label: 'CONTACT', href: '#contact', id: 'contact', keyNum: '7' }
   ];
 
-  // Scroll detection & section spy
+  // Scroll detection for background opacity
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
-
-      const sections = ['about', 'projects', 'skills', 'experience', 'events', 'certifications', 'contact'];
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 240 && rect.bottom >= 240) {
-            setActiveSection(sectionId);
-            break;
-          }
-        }
-      }
+      setIsScrolled(window.scrollY > 30);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -61,31 +51,29 @@ export default function Navbar() {
   // Keyboard navigation for sections (1-7)
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Don't trigger if user is typing in an input or textarea
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
       
       const link = navLinks.find((l) => l.keyNum === e.key);
       if (link) {
-        const target = document.getElementById(link.id);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-          setActiveSection(link.id);
+        if (onSelectSection) {
+          onSelectSection(link.id);
+        } else {
+          setInternalActiveSection(link.id);
         }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [navLinks]);
+  }, [navLinks, onSelectSection]);
 
   const handleNavClick = (e, sectionId) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const target = document.getElementById(sectionId);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-      history.pushState(null, '', `#${sectionId}`);
-      setActiveSection(sectionId);
+    if (onSelectSection) {
+      onSelectSection(sectionId);
+    } else {
+      setInternalActiveSection(sectionId);
     }
   };
 
